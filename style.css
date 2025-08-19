@@ -1,0 +1,109 @@
+body {
+ font-family: sans-serif;
+ margin: 0;
+ background-color: #121826; /* Example dark background */
+ color: #e0e6ed; /* Example light text */
+}
+
+header {
+ background-color: #1d293a; /* Example header background */
+ padding: 1rem 0;
+}
+
+nav ul {
+ list-style: none;
+ padding: 0;
+ margin: 0;
+ text-align: center;
+}
+
+nav ul li {
+ display: inline;
+ margin: 0 15px;
+}
+
+nav ul li a {
+ color: #a3b18a; /* Example link color */
+ text-decoration: none;
+}
+
+.container {
+ max-width: 1200px;
+ margin: 0 auto;
+ padding: 20px;
+}
+
+#hero {
+ padding: 80px 0;
+ text-align: center;
+}
+
+.experience-cards {
+ display: flex;
+ gap: 20px;
+ justify-content: center;
+ margin-top: 40px;
+}
+
+.experience-cards .card {
+ background-color: #1d293a; /* Example card background */
+ padding: 20px;
+ border-radius: 5px;
+ width: 300px; /* Adjust as needed */
+}
+
+#projects {
+ padding: 80px 0;
+}
+
+.project-card {
+ background-color: #1d293a; /* Example project card background */
+ padding: 30px;
+ border-radius: 5px;
+ display: flex;
+ gap: 30px;
+ align-items: center;
+}
+
+.project-details {
+ flex: 1;
+}
+
+.project-image {
+ flex: 1;
+ text-align: center;
+}
+
+.project-image img {
+ max-width: 200px; /* Adjust as needed */
+ height: auto;
+}
+
+.buttons .button {
+ display: inline-block;
+ padding: 10px 20px;
+ text-decoration: none;
+ border-radius: 5px;
+ margin-right: 10px;
+}
+
+.buttons .primary {
+ background-color: #588157; /* Example primary button color */
+ color: #fefae0;
+}
+
+.buttons .secondary {
+ background-color: transparent;
+ border: 1px solid #a3b18a; /* Example secondary button border */
+ color: #a3b18a;
+}
+
+footer {
+ background-color: #1d293a; /* Example footer background */
+ color: #a3b18a;
+ text-align: center;
+ padding: 1rem 0;
+ position: fixed; /* Example for a fixed footer */
+ bottom: 0;
+ width: 100%;
+}
