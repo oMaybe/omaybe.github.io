@@ -1,0 +1,545 @@
+/* New CSS variables from the provided train code */
+:root {
+    --bg: #000000;
+    --fg: #e8eefc;
+    --accent: #6ea8fe;
+    --track: #9aa4b2;
+    --train-color: #e54f6d; 
+    --window: #ffd166;
+    --smoke: #d1d5db;
+    --train-full-duration: 15s; /* NEW: Variable for total train journey duration */
+    --car-width: 160px; /* NEW: Define car width for calculations */
+    --engine-width: 140px; /* NEW: Define engine width for calculations */
+    --coupler-width: 20px; /* NEW: Define coupler width for calculations */
+    --gap-between-parts: 10px; /* NEW: Define small gap between parts for better spacing */
+}
+
+* { box-sizing: border-box; } /* Ensure consistent box model */
+
+body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0; /* Override default body margin */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Adjust to better fit content from top */
+    align-items: center;
+    min-height: 100vh;
+    color: #e2e8f0; /* Light text color */
+    /* EXTENDED: Apply the hero section gradient to the entire body */
+    background: linear-gradient(to bottom right, #1a202c, #111932); /* Darker shades for a subtle gradient */
+    position: relative; /* Ensure sections can be positioned relative to body */
+}
+
+/* Custom styles for subtle gradient on buttons/cards, mimicking the design */
+.btn-primary-gradient {
+    background-image: linear-gradient(to right, #6EE7B7, #3B82F6);
+}
+.btn-secondary-border {
+    border: 1px solid #60A5FA;
+    color: #60A5FA;
+}
+.card-bg-gradient {
+    background-image: linear-gradient(to bottom right, #2D3748, #1A202C); /* Darker shades for card background */
+}
+/* Specific skill item styling for the new design */
+.skill-item {
+    background-color: #374151; /* bg-gray-700 */
+    padding: 0.5rem 1rem;
+    border-radius: 9999px; /* full rounded */
+    font-size: 0.875rem; /* text-sm */
+    line-height: 1.25rem;
+    color: #D1D5DB; /* text-gray-300 */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem; /* space-x-2 */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow-sm */
+    transition: all 0.2s ease-in-out;
+}
+.skill-item:hover {
+    background-color: #4B5563; /* hover:bg-gray-600 */
+    transform: translateY(-2px);
+}
+
+/* Hero Section with Flying Code Blocks Animation (kept from previous version) */
+.hero-animation-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Ensures shapes don't go out of bounds */
+    z-index: 0; /* Behind content */
+    pointer-events: none; /* Allows clicks on content below */
+}
+
+.code-block {
+    position: absolute;
+    background-color: rgba(99, 102, 241, 0.1); /* Indigo, semi-transparent */
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    color: rgba(209, 213, 219, 0.7); /* Light gray, semi-transparent */
+    white-space: nowrap;
+    opacity: 0; /* Start hidden, overridden by 0% keyframe */
+    transform: translate(-100%, 0) rotate(0deg); /* Start off-screen left */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; /* Monospace font for code */
+}
+
+/* Animation for flying code blocks (Left to Right) */
+@keyframes fly-code-block-ltr {
+    0% {
+        transform: translate(calc(-100% - 100vw), var(--start-y, 10vh)) rotate(0deg) scale(0.8);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(50vw, calc(var(--mid-y, 80vh) + var(--bounce-offset-y, 0px))) rotate(var(--rotation-peak, 90deg)) scale(1.2); 
+        opacity: 1;
+    }
+    100% {
+        transform: translate(100vw, var(--end-y, 20vh)) rotate(0deg) scale(0.8);
+        opacity: 0;
+    }
+}
+
+/* Animation for flying code blocks (Right to Left) */
+@keyframes fly-code-block-rtl {
+    0% {
+        transform: translate(100vw, var(--start-y, 10vh)) rotate(0deg) scale(0.8);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50vw, calc(var(--mid-y, 80vh) + var(--bounce-offset-y, 0px))) rotate(var(--rotation-peak, 90deg)) scale(1.2); 
+        opacity: 1;
+    }
+    100% {
+        transform: translate(calc(-100% - 100vw), var(--end-y, 20vh)) rotate(0deg) scale(0.8);
+        opacity: 0;
+    }
+}
+
+/* Individual block styles for varied appearance and movement */
+/* All blocks will now start from either the left or the right edge */
+.code-block:nth-child(odd) { 
+    animation: fly-code-block-ltr var(--animation-duration, 30s) infinite linear;
+    left: auto; /* Remove left property for these */
+}
+
+.code-block:nth-child(even) { 
+    animation: fly-code-block-rtl var(--animation-duration, 30s) infinite linear;
+    right: auto; /* Remove right property for these */
+}
+
+.code-block:nth-child(1) { 
+    --animation-duration: 40s; 
+    background-color: rgba(60, 150, 250, 0.15); 
+    --start-y: 10vh; --mid-y: 80vh; --end-y: 20vh; 
+    --rotation-peak: 90deg; /* Clockwise */
+    --bounce-offset-y: -50px; /* Bounce up */
+    animation-delay: 0s;
+}
+.code-block:nth-child(2) { 
+    --animation-duration: 38s; 
+    background-color: rgba(168, 85, 247, 0.12); 
+    --start-y: 60vh; --mid-y: -10vh; --end-y: 30vh; 
+    --rotation-peak: -90deg; /* Counter-clockwise */
+    animation-delay: 2s;
+}
+.code-block:nth-child(3) { 
+    --animation-duration: 42s; 
+    background-color: rgba(34, 197, 94, 0.1); 
+    --start-y: 30vh; --mid-y: 90vh; --end-y: 10vh; 
+    --rotation-peak: 90deg; /* Clockwise */
+    animation-delay: 5s;
+}
+.code-block:nth-child(4) { 
+    --animation-duration: 35s; 
+    background-color: rgba(239, 68, 68, 0.09); 
+    --start-y: 80vh; --mid-y: -20vh; --end-y: 40vh; 
+    --rotation-peak: -90deg; /* Counter-clockwise */
+    --bounce-offset-y: -70px; /* More bounce */
+    animation-delay: 8s;
+}
+.code-block:nth-child(5) { 
+    --animation-duration: 45s; 
+    background-color: rgba(251, 191, 36, 0.11); 
+    --start-y: 0vh; --mid-y: 70vh; --end-y: 15vh; 
+    --rotation-peak: 90deg; /* Clockwise */
+    animation-delay: 10s;
+}
+.code-block:nth-child(6) { 
+    --animation-duration: 39s; 
+    background-color: rgba(60, 150, 250, 0.17); 
+    --start-y: 40vh; --mid-y: -5vh; --end-y: 50vh; 
+    --rotation-peak: -90deg; /* Counter-clockwise */
+    animation-delay: 13s;
+}
+.code-block:nth-child(7) { 
+    --animation-duration: 41s; 
+    background-color: rgba(99, 102, 241, 0.13); 
+    --start-y: 90vh; --mid-y: 20vh; --end-y: 70vh; 
+    --rotation-peak: 90deg; /* Clockwise */
+    --bounce-offset-y: -60px; /* Bounce up */
+    animation-delay: 15s;
+}
+.code-block:nth-child(8) { 
+    --animation-duration: 36s; 
+    background-color: rgba(168, 85, 247, 0.1); 
+    --start-y: 20vh; --mid-y: 60vh; --end-y: 0vh; 
+    --rotation-peak: -90deg; /* Counter-clockwise */
+    animation-delay: 18s;
+}
+.code-block:nth-child(9) { 
+    --animation-duration: 40s; 
+    background-color: rgba(34, 197, 94, 0.12); 
+    --start-y: 70vh; --mid-y: -15vh; --end-y: 25vh; 
+    --rotation-peak: 90deg; /* Clockwise */
+    animation-delay: 20s;
+}
+.code-block:nth-child(10) { 
+    --animation-duration: 44s; 
+    background-color: rgba(239, 68, 68, 0.08); 
+    --start-y: 5vh; --mid-y: 85vh; --end-y: 30vh; 
+    --rotation-peak: -90deg; /* Counter-clockwise */
+    --bounce-offset-y: -40px; /* Bounce up */
+    animation-delay: 2s;
+}
+.code-block:nth-child(11) { 
+    --animation-duration: 37s; 
+    background-color: rgba(60, 150, 250, 0.1); 
+    --start-y: 0vh; --mid-y: 50vh; --end-y: 10vh; 
+    --rotation-peak: 90deg; 
+    animation-delay: 5s;
+}
+.code-block:nth-child(12) { 
+    --animation-duration: 40s; 
+    background-color: rgba(168, 85, 247, 0.15); 
+    --start-y: 50vh; --mid-y: -10vh; --end-y: 40vh; 
+    --rotation-peak: -90deg; 
+    animation-delay: 8s;
+}
+.code-block:nth-child(13) { 
+    --animation-duration: 35s; 
+    background-color: rgba(34, 197, 94, 0.07); 
+    --start-y: 20vh; --mid-y: 70vh; --end-y: 5vh; 
+    --rotation-peak: 90deg; 
+    animation-delay: 11s;
+}
+.code-block:nth-child(14) { 
+    --animation-duration: 43s; 
+    background-color: rgba(239, 68, 68, 0.1); 
+    --start-y: 75vh; --mid-y: -5vh; --end-y: 60vh; 
+    --rotation-peak: -90deg; 
+    animation-delay: 14s;
+}
+.code-block:nth-child(15) { 
+    --animation-duration: 38s; 
+    background-color: rgba(251, 191, 36, 0.12); 
+    --start-y: 10vh; --mid-y: 80vh; --end-y: 25vh; 
+    --rotation-peak: 90deg; 
+    animation-delay: 17s;
+}
+
+/* New Train Specific Styles */
+.card {
+    width: min(920px, 94vw);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.04);
+    padding: 20px 20px 28px;
+    margin-top: 2rem; /* Add some space from previous section */
+}
+
+.title { font-size: 22px; font-weight: 700; letter-spacing: 0.3px; }
+.sub { opacity: 0.8; margin-top: 4px; font-size: 14px; }
+
+.controls { display: flex; gap: 12px; margin-top: 14px; justify-content: center;} /* Center buttons */
+
+/* Styling for the Discord button */
+.discord-button {
+    cursor: pointer;
+    background: #7289da; /* Discord brand color */
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: transform 0.06s ease, filter 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+    font-size: 1.125rem; /* text-lg */
+}
+.discord-button:hover { filter: brightness(1.1); }
+.discord-button:active { transform: translateY(1px) scale(0.99); }
+
+
+.scene {
+    position: relative;
+    height: 260px;
+    margin-top: 18px;
+    border-radius: 18px;
+    overflow: hidden;
+    /* ENHANCED: More dynamic sky gradient */
+    background: linear-gradient(to top, #4a0e4e 0%, #2a0a2d 20%, #1a1a4a 50%, #0a0a2a 100%);
+    outline: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Ground */
+.ground { 
+    position: absolute; left:0; right:0; bottom:0; height: 90px; 
+    /* ENHANCED: Grass texture/gradient */
+    background: 
+    linear-gradient(to top, #33691e, #689f38); /* Deeper green to lighter green */
+    box-shadow: inset 0 5px 10px rgba(0,0,0,0.2); /* Subtle depth */
+}
+
+/* Track */
+.track {
+    position: absolute; left: -2000px; right: -2000px; bottom: 54px; height: 4px; background: var(--track);
+    box-shadow: 0 6px 0 0 #6b7280;
+    background-image:
+    repeating-linear-gradient(90deg, #c9d1d9 0 22px, transparent 22px 90px);
+    transform: translateX(0);
+    animation: track-move 18s linear infinite;
+}
+@keyframes track-move { to { transform: translateX(-1000px);} }
+
+/* Train */
+.train {
+    position: absolute;
+    bottom: 54px; /* Align train's bottom with the track's bottom */
+    left: 0; /* Control position via translateX */
+    width: calc(var(--car-width) + var(--coupler-width) + var(--engine-width)); /* Total train width for calculations */
+    height: 110px;
+    /* Initial transform to place the whole train off-screen left */
+    transform: translateX(calc(-1 * (var(--car-width) + var(--coupler-width) + var(--engine-width)))) scaleX(1); 
+    transform-origin: center center; /* Ensure scaling works from center */
+    will-change: transform;
+}
+
+/* Car + Engine styling */
+.engine {
+    position: absolute; 
+    bottom: 36px; /* Place on top of wheels (wheel height) */
+    height: 62px; border-radius: 10px;
+    background: linear-gradient(#ff6f86, var(--train-color)); 
+    border: 2px solid rgba(0,0,0,0.25);
+    box-shadow: inset 0 -6px 0 rgba(0,0,0,0.15);
+}
+
+.car {
+    position: absolute; 
+    bottom: -13px; /* Place on top of wheels (wheel height) */
+    height: 62px; border-radius: 10px;
+    background: linear-gradient(#ff6f86, var(--train-color)); 
+    border: 2px solid rgba(0,0,0,0.25);
+    box-shadow: inset 0 -6px 0 rgba(0,0,0,0.15);
+}
+
+/* Updated positions */
+.car { width: var(--car-width); left: 0; position: relative; overflow: visible;} /* Added position relative for nested absolute text */
+.engine { width: var(--engine-width); left: calc(var(--car-width) + var(--coupler-width)); border-top-left-radius: 16px; }
+
+/* Coupler positioning */
+.coupler { 
+    position: absolute; bottom: 42px; width: var(--coupler-width); height: 8px; background: #1f2937; border-radius: 4px; 
+    left: var(--car-width); /* Place it after the car */
+}
+
+/* Chimney, Cab, Window, Smoke now relative to engine's new position */
+.chimney {
+    position: absolute; 
+    left: calc(var(--car-width) + var(--coupler-width) + 20px); /* engine.left + 20px */
+    bottom: 102px; /* Adjusted to be above the engine, relative to train bottom */
+    width: 22px; height: 34px;
+    background: #9b1c31; border: 2px solid rgba(0,0,0,0.25); border-bottom: none;
+    border-top-left-radius: 6px; border-top-right-radius: 6px;
+}
+
+.cab { 
+    position: absolute; 
+    left: calc(var(--car-width) + var(--coupler-width) + 70px); /* engine.left + 70px */
+    bottom: 90px; /* Adjusted to be on top of the engine, relative to train bottom */
+    width: 60px; height: 40px; background: #1f2937; border-radius: 6px; 
+}
+.window { position: absolute; inset: 6px 10px; background: var(--window); border-radius: 4px; }
+
+.wheel, .wheel::after {
+    position: absolute; bottom: 0; width: 36px; height: 36px; border-radius: 50%;
+    background: #111827; border: 4px solid #9ca3af; box-shadow: inset 0 0 0 6px #111827;
+    animation: spin 0.9s linear infinite;
+}
+.wheel::after { content: ""; inset: 8px; border: 3px solid #9ca3af; border-radius: 50%; background: transparent; box-shadow: none; animation: none; }
+
+/* Wheels re-positioned for car and engine */
+.w1 { left: 24px; } /* First wheel on car */
+.w2 { left: 96px; } /* Second wheel on car */
+.w3 { left: calc(var(--car-width) + var(--coupler-width) + 24px); } /* First wheel on engine (car.width + coupler.width + 24px) */
+.w4 { left: calc(var(--car-width) + var(--coupler-width) + 96px); } /* Second wheel on engine (car.width + coupler.width + 96px) */
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Smoke puffs */
+.smoke { 
+    position: absolute; 
+    left: calc(var(--car-width) + var(--coupler-width) + 26px); /* engine.left + 26px */
+    bottom: 130px; /* Adjusted to be above chimney, relative to train bottom */
+    width: 10px; height: 10px; 
+}
+.puff {
+    position: absolute; left: 0; bottom: 0; width: 14px; height: 14px; border-radius: 50%;
+    background: var(--smoke); opacity: 0.8; filter: blur(0.3px);
+    transform: translate(0,0) scale(1);
+    animation: puff 1.6s ease-out infinite;
+}
+.puff:nth-child(2) { animation-delay: 0.25s; }
+.puff:nth-child(3) { animation-delay: 0.5s; }
+
+@keyframes puff {
+    0% { transform: translate(0,0) scale(0.6); opacity: 0.0; }
+    10% { opacity: 0.7; }
+    100% { transform: translate(60px,-80px) scale(1.6); opacity: 0; }
+}
+
+/* Header Content Wrapper with Gradient Outline */
+.header-content-wrapper {
+    position: relative;
+    border-radius: 2rem; /* Soft rounded look */
+    overflow: hidden; /* Crucial to clip the gradient outside */
+    background: linear-gradient(to right, #2D3748, #1A202C); /* Solid background for header content */
+    padding: 0.75rem 1.5rem; /* Reduced vertical, added horizontal padding */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35); /* Keep shadow */
+    width: fit-content; /* Make width fit content */
+}
+
+.header-content-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -3px; /* Adjusted for smoother outline */
+    border-radius: inherit;
+    background: linear-gradient(90deg, #3B82F6, #6EE7B7, #8B5CF6, #3B82F6); /* More subtle, complementary gradient */
+    background-size: 200% 100%; /* For animating the gradient itself */
+    animation: animateOutline 8s linear infinite; /* New animation for linear gradient */
+    z-index: -1; /* Behind the actual header content */
+}
+
+@keyframes animateOutline {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; } /* Animate the background position */
+}
+
+/* Project card specific styles for hover effect */
+.project-card-container {
+    position: relative;
+    overflow: hidden; /* Ensures content is clipped */
+    cursor: pointer;
+}
+
+.project-details {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden; /* Changed from visibility: hidden; for smoother transition */
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out; /* Removed visibility from transition */
+    padding: 0.25rem; /* Adjust padding for expanded details */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+.project-card-container:hover {
+    border-color: rgba(64, 224, 255, 0.5);
+    box-shadow: 0 15px 30px rgba(168, 85, 247, 0.4); /* Enhanced shadow with glow */
+    border-color: #a855f7;
+    border-width: 3px;
+}
+
+.project-card-container:hover .project-details {
+    max-height: 300px; /* Adjust as needed based on content */
+    opacity: 1;
+    padding-top: 0.25rem; /* Add padding when expanded */
+}
+/* Ensure the visible part of the card has flex or block behavior to properly contain children */
+.project-card-visible-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; /* Space between image and text */
+    padding: 1.0rem; /* Consistent padding for the visible part */
+}
+
+/* Helper text */
+.hint { font-size: 12px; opacity: 0.7; margin-top: 8px; }
+
+/* NEW: Dropped text styles - text that remains in the scene after train leaves */
+.dropped-text {
+position: absolute;
+font-size: 50px;
+font-weight: bold;
+color: var(--fg);
+text-shadow: 0 0 8px rgba(0,255,255,0.7), 0 0 15px rgba(0,255,255,0.4);
+white-space: nowrap;
+opacity: 0;
+/* Position will be set dynamically by JavaScript */
+}
+
+.dropped-text.visible {
+opacity: 1;
+transition: opacity 0.5s ease-in-out;
+}
+
+.dropped-text.settle {
+animation: settle 0.8s ease-out;
+}
+
+@keyframes settle {
+0% { transform: translateY(-20px); }
+100% { transform: translateY(0); }
+}
+
+/* Snowflake styles */
+/* Snowflake Styles */
+.snowflakes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.snowflake {
+    position: absolute;
+    color: #fff;
+    font-size: 1em;
+    font-family: Arial, sans-serif;
+    text-shadow: 0 0 5px #fff;
+    animation: fall linear forwards;
+}
+
+/* Snowflake Animation */
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+/* Snowflake Color variations */
+.snowflake:nth-child(4n+1) { color: #87CEEB; } /* Light Sky Blue */
+.snowflake:nth-child(4n+2) { color: #DDA0DD; } /* Plum */
+.snowflake:nth-child(4n+3) { color: #90EE90; } /* Light Green */
+.snowflake:nth-child(4n+4) { color: #FFD700; } /* Gold */
+
+@keyframes fade-in-out {
+    0% { opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(50vh) rotate(180deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+}

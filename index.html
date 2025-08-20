@@ -1,146 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Developer Portfolio</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Font - Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        /* Custom styles for subtle gradient on buttons/cards, mimicking the design */
-        .btn-primary-gradient {
-            background-image: linear-gradient(to right, #6EE7B7, #3B82F6);
-        }
-        .btn-secondary-border {
-            border: 1px solid #60A5FA;
-            color: #60A5FA;
-        }
-        .card-bg-gradient {
-            background-image: linear-gradient(to bottom right, #2D3748, #1A202C); /* Darker shades for card background */
-        }
-        /* Specific skill item styling for the new design */
-        .skill-item {
-            background-color: #374151; /* bg-gray-700 */
-            padding: 0.5rem 1rem;
-            border-radius: 9999px; /* full rounded */
-            font-size: 0.875rem; /* text-sm */
-            line-height: 1.25rem;
-            color: #D1D5DB; /* text-gray-300 */
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem; /* space-x-2 */
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow-sm */
-            transition: all 0.2s ease-in-out;
-        }
-        .skill-item:hover {
-            background-color: #4B5563; /* hover:bg-gray-600 */
-            transform: translateY(-2px);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>oMaybe's Portfolio</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Font - Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="styles.css" />
 
-        /* Hero Section with Flying Code Blocks Animation */
-        .hero-animation-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden; /* Ensures shapes don't go out of bounds */
-            z-index: 0; /* Behind content */
-            pointer-events: none; /* Allows clicks on content below */
-        }
-
-        .code-block {
-            position: absolute;
-            background-color: rgba(99, 102, 241, 0.1); /* Indigo, semi-transparent */
-            border-radius: 4px;
-            padding: 8px 12px;
-            font-size: 0.8rem;
-            color: rgba(209, 213, 219, 0.7); /* Light gray, semi-transparent */
-            white-space: nowrap;
-            opacity: 0; /* Start hidden */
-            transform: translate(-100%, 0) rotate(0deg); /* Start off-screen left */
-            animation: fly-code-block 20s infinite linear;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; /* Monospace font for code */
-        }
-
-        /* Animation for flying code blocks */
-        @keyframes fly-code-block {
-            0% {
-                transform: translate(-100vw, 10vh) rotate(0deg) scale(0.8);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.5;
-            }
-            50% {
-                transform: translate(50vw, 80vh) rotate(180deg) scale(1.2);
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.5;
-            }
-            100% {
-                transform: translate(200vw, 20vh) rotate(360deg) scale(0.8);
-                opacity: 0;
-            }
-        }
-
-        /* Individual block styles for varied appearance */
-        .code-block:nth-child(1) { left: 0%; top: 10%; animation-duration: 25s; animation-delay: 0s; background-color: rgba(60, 150, 250, 0.15); }
-        .code-block:nth-child(2) { left: 10%; top: 60%; animation-duration: 22s; animation-delay: 3s; background-color: rgba(168, 85, 247, 0.12); }
-        .code-block:nth-child(3) { left: 20%; top: 30%; animation-duration: 28s; animation-delay: 6s; background-color: rgba(34, 197, 94, 0.1); }
-        .code-block:nth-child(4) { left: 30%; top: 80%; animation-duration: 20s; animation-delay: 9s; background-color: rgba(239, 68, 68, 0.09); }
-        .code-block:nth-child(5) { left: 40%; top: 0%; animation-duration: 30s; animation-delay: 12s; background-color: rgba(251, 191, 36, 0.11); }
-        .code-block:nth-child(6) { left: 50%; top: 40%; animation-duration: 24s; animation-delay: 15s; background-color: rgba(60, 150, 250, 0.17); }
-        .code-block:nth-child(7) { left: 60%; top: 90%; animation-duration: 27s; animation-delay: 1s; background-color: rgba(99, 102, 241, 0.13); }
-        .code-block:nth-child(8) { left: 70%; top: 20%; animation-duration: 21s; animation-delay: 4s; background-color: rgba(168, 85, 247, 0.1); }
-        .code-block:nth-child(9) { left: 80%; top: 70%; animation-duration: 26s; animation-delay: 7s; background-color: rgba(34, 197, 94, 0.12); }
-        .code-block:nth-child(10) { left: 90%; top: 5%; animation-duration: 29s; animation-delay: 10s; background-color: rgba(239, 68, 68, 0.08); }
-    </style>
 </head>
-<body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col">
+<body class="text-gray-100 min-h-screen flex flex-col">
 
     <!-- Header & Navigation -->
-    <header class="bg-gray-800 py-4 shadow-xl sticky top-0 z-50 rounded-b-lg border-b border-gray-700">
-        <nav class="container mx-auto px-4 flex justify-between items-center">
-            <a href="#hero" class="text-3xl font-bold text-blue-400 hover:text-blue-300 transition duration-300 ease-in-out transform hover:scale-105 rounded-md p-2">
-                YourName
-            </a>
-            <ul class="flex space-x-6 text-lg">
-                <li><a href="#hero" class="text-gray-300 hover:text-blue-400 transition duration-300 ease-in-out rounded-md px-3 py-2">Home</a></li>
-                <li><a href="#skills" class="text-gray-300 hover:text-blue-400 transition duration-300 ease-in-out rounded-md px-3 py-2">Skills</a></li>
-                <li><a href="#experience" class="text-gray-300 hover:text-blue-400 transition duration-300 ease-in-out rounded-md px-3 py-2">Experience</a></li>
-                <li><a href="#projects" class="text-gray-300 hover:text-blue-400 transition duration-300 ease-in-out rounded-md px-3 py-2">Projects</a></li>
-                <li><a href="#contact" class="text-gray-300 hover:text-blue-400 transition duration-300 ease-in-out rounded-md px-3 py-2">Contact</a></li>
-            </ul>
-        </nav>
+    <header class="w-full sticky top-0 z-50 py-2">
+        <div class="header-content-wrapper mx-auto">
+            <nav class="container mx-auto flex justify-center items-center">
+                <ul class="flex space-x-3 text-lg">
+                    <li><a href="#hero" class="text-gray-300 hover:bg-blue-800/20 hover:text-blue-300 transition duration-300 ease-in-out rounded-lg px-4 py-2">Home</a></li>
+                    <li><a href="#skills" class="text-gray-300 hover:bg-blue-800/20 hover:text-blue-300 transition duration-300 ease-in-out rounded-lg px-4 py-2">Skills</a></li>
+                    <li><a href="#experience" class="text-gray-300 hover:bg-blue-800/20 hover:text-blue-300 transition duration-300 ease-in-out rounded-lg px-4 py-2">Experience</a></li>
+                    <li><a href="#projects" class="text-gray-300 hover:bg-blue-800/20 hover:text-blue-300 transition duration-300 ease-in-out rounded-lg px-4 py-2">Projects</a></li>
+                    <li><a href="#contact" class="text-gray-300 hover:bg-blue-800/20 hover:text-blue-300 transition duration-300 ease-in-out rounded-lg px-4 py-2">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main class="flex-grow">
+    <main class="flex-grow w-full flex flex-col items-center">
         <!-- Hero Section -->
-        <section id="hero" class="relative py-20 md:py-32 text-center bg-gradient-to-br from-gray-900 to-gray-800 rounded-b-3xl shadow-xl overflow-hidden">
+        <section id="hero" class="relative py-20 md:py-32 text-center rounded-b-3xl shadow-xl overflow-hidden w-full">
             <!-- Flying Code Blocks Animation -->
             <div class="hero-animation-container">
-                <div class="code-block">{ function() }</div>
-                <div class="code-block">const x = 10;</div>
-                <div class="code-block">&lt;div&gt;&lt;/div&gt;</div>
-                <div class="code-block">.css { }</div>
-                <div class="code-block">console.log()</div>
-                <div class="code-block">import React</div>
-                <div class="code-block">{"name": "value"}</div>
-                <div class="code-block">async function</div>
-                <div class="code-block"># Python</div>
-                <div class="code-block">// C++</div>
+                <div class="code-block">function MyFunction()</div>
+                <div class="code-block">local x = 10</div>
+                <div class="code-block">game.Workspace.Part</div>
+                <div class="code-block">part.Color = Color3.new()</div>
+                <div class="code-block">print("Hello World")</div>
+                <div class="code-block">local ReplicatedStorage</div>
+                <div class="code-block">{Name = "Value"}</div>
+                <div class="code-block">spawn(function()</div>
+                <div class="code-block">-- Lua Comment</div>
+                <div class="code-block">task.wait(2)</div>
+                <div class="code-block">type Data = { }</div>
+                <div class="code-block">game:GetService("Players")</div>
+                <div class="code-block">player.CharacterAdded:Connect()</div>
+                <div class="code-block">DataStore:GetAsync()</div>
+                <div class="code-block">coroutine.create()</div>
             </div>
 
             <div class="relative z-10 container mx-auto px-4">
@@ -156,163 +65,21 @@
             </div>
         </section>
 
-        <!-- Experience Section -->
-        <section id="experience" class="py-16 md:py-24 bg-gray-900">
-            <div class="container mx-auto px-4">
-                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-blue-400">Experience</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Experience Card 1 -->
-                    <div class="card-bg-gradient p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-700">
-                        <div class="text-5xl text-blue-400 mb-4 text-center">
-                            <i class="fab fa-wordpress"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold mb-2 text-center">WordPress Developer</h3>
-                        <p class="text-blue-300 text-lg text-center">Fiverr</p>
-                        <p class="text-gray-400 text-sm text-center mb-4">2018 - 2019</p>
-                        <p class="text-gray-300 leading-relaxed text-center">
-                            Developed and customized dynamic WordPress websites for diverse clients, focusing on responsive design and user experience.
-                        </p>
-                    </div>
-                    <!-- Experience Card 2 -->
-                    <div class="card-bg-gradient p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-700">
-                        <div class="text-5xl text-green-400 mb-4 text-center">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold mb-2 text-center">Shopify Developer</h3>
-                        <p class="text-green-300 text-lg text-center">Upwork</p>
-                        <p class="text-gray-400 text-sm text-center mb-4">2019 - 2021</p>
-                        <p class="text-gray-300 leading-relaxed text-center">
-                            Built and optimized e-commerce stores on the Shopify platform, implementing custom themes and apps to boost sales.
-                        </p>
-                    </div>
-                    <!-- Experience Card 3 -->
-                    <div class="card-bg-gradient p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-700">
-                        <div class="text-5xl text-purple-400 mb-4 text-center">
-                            <i class="fas fa-server"></i>
-                        </div>
-                        <h3 class="text-2xl font-semibold mb-2 text-center">Backend Developer</h3>
-                        <p class="text-purple-300 text-lg text-center">Tech Solutions Inc.</p>
-                        <p class="text-gray-400 text-sm text-center mb-4">2021 - Present</p>
-                        <p class="text-gray-300 leading-relaxed text-center">
-                            Designing and implementing robust RESTful APIs and database solutions for scalable web applications using Node.js.
-                        </p>
-                    </div>
-                </div>
-                <div class="text-center mt-12">
-                    <a href="#" class="inline-block btn-secondary-border font-semibold py-3 px-8 rounded-full shadow-md transform transition duration-300 ease-in-out hover:scale-105 hover:bg-gray-800">
-                        View All Experience
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="py-16 md:py-24 bg-gray-800 rounded-t-3xl shadow-xl">
-            <div class="container mx-auto px-4">
-                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-blue-400">Projects</h2>
-                <div class="grid grid-cols-1 gap-12">
-                    <!-- Project Card: Olova -->
-                    <div class="card-bg-gradient p-8 rounded-xl shadow-lg flex flex-col lg:flex-row items-center justify-between gap-8 border border-gray-700 hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-[1.01]">
-                        <div class="flex-1 text-center lg:text-left">
-                            <h3 class="text-4xl font-bold text-blue-300 mb-3 leading-tight">Olova</h3>
-                            <p class="text-xl text-gray-300 mb-4 italic">
-                                The Modern JavaScript Framework for Elegant Web Apps
-                            </p>
-                            <p class="text-lg text-gray-400 leading-relaxed mb-6">
-                                Olova is a lightweight and powerful JavaScript framework designed to simplify the development of fast, beautiful, and scalable web applications with significantly less code. It emphasizes developer experience and performance.
-                            </p>
-                            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                                <a href="#" class="inline-block btn-primary-gradient text-white font-semibold py-3 px-8 rounded-full shadow-md transform transition duration-300 ease-in-out hover:scale-105 text-center">
-                                    Learn Olova
-                                </a>
-                                <a href="#" class="inline-block btn-secondary-border font-semibold py-3 px-8 rounded-full shadow-md transform transition duration-300 ease-in-out hover:scale-105 text-center">
-                                    View on Github <i class="fab fa-github ml-2"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0 w-48 h-48 lg:w-64 lg:h-64 flex items-center justify-center rounded-xl bg-gray-700 overflow-hidden shadow-xl border border-gray-600">
-                            <img src="https://placehold.co/256x256/2D3748/6EE7B7?text=Olova+Logo" alt="Olova Framework Logo" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-
-                    <!-- Add more project cards here if needed -->
-                    <!-- Project Card 2 Example -->
-                    <div class="card-bg-gradient p-8 rounded-xl shadow-lg flex flex-col lg:flex-row-reverse items-center justify-between gap-8 border border-gray-700 hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-[1.01]">
-                        <div class="flex-1 text-center lg:text-left">
-                            <h3 class="text-4xl font-bold text-green-300 mb-3 leading-tight">TaskFlow</h3>
-                            <p class="text-xl text-gray-300 mb-4 italic">
-                                Intuitive Task Management for Productive Teams
-                            </p>
-                            <p class="text-lg text-gray-400 leading-relaxed mb-6">
-                                TaskFlow is a collaborative task management application designed to help teams organize, track, and complete projects efficiently. Features real-time updates and customizable workflows.
-                            </p>
-                            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                                <a href="#" class="inline-block btn-primary-gradient text-white font-semibold py-3 px-8 rounded-full shadow-md transform transition duration-300 ease-in-out hover:scale-105 text-center">
-                                    Demo TaskFlow
-                                </a>
-                                <a href="#" class="inline-block btn-secondary-border font-semibold py-3 px-8 rounded-full shadow-md transform transition duration-300 ease-in-out hover:scale-105 text-center">
-                                    View on Github <i class="fab fa-github ml-2"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="flex-shrink-0 w-48 h-48 lg:w-64 lg:h-64 flex items-center justify-center rounded-xl bg-gray-700 overflow-hidden shadow-xl border border-gray-600">
-                            <img src="https://placehold.co/256x256/2D3748/6EE7B7?text=TaskFlow+App" alt="TaskFlow App Screenshot" class="w-full h-full object-cover">
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center mt-12">
-                    <a href="#" class="inline-block btn-secondary-border font-semibold py-3 px-8 rounded-full shadow-md transform transition duration-300 ease-in-out hover:scale-105 hover:bg-gray-900">
-                        More Projects
-                    </a>
-                </div>
-            </div>
-        </section>
-
         <!-- Skills Section -->
-        <section id="skills" class="py-16 md:py-24 bg-gray-900">
+        <section id="skills" class="py-16 md:py-24 w-full">
             <div class="container mx-auto px-4">
                 <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-blue-400">Skills</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <!-- Frontend Development -->
-                    <div class="card-bg-gradient p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
-                        <h3 class="text-2xl font-semibold text-blue-300 mb-4 flex items-center gap-3">
-                            <i class="fas fa-code text-3xl"></i> Frontend Development
-                        </h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="skill-item">React</span>
-                            <span class="skill-item">Next.js</span>
-                            <span class="skill-item">TypeScript</span>
-                            <span class="skill-item">Tailwind CSS</span>
-                            <span class="skill-item">HTML5</span>
-                            <span class="skill-item">CSS3</span>
-                        </div>
-                    </div>
-
                     <!-- Backend Development -->
                     <div class="card-bg-gradient p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
                         <h3 class="text-2xl font-semibold text-green-300 mb-4 flex items-center gap-3">
                             <i class="fas fa-server text-3xl"></i> Backend Development
                         </h3>
                         <div class="flex flex-wrap gap-3">
-                            <span class="skill-item">Node.js</span>
                             <span class="skill-item">Python</span>
-                            <span class="skill-item">PostgreSQL</span>
+                            <span class="skill-item">MySQL</span>
                             <span class="skill-item">MongoDB</span>
-                            <span class="skill-item">REST APIs</span>
-                            <span class="skill-item">GraphQL</span>
-                        </div>
-                    </div>
-
-                    <!-- UI/UX Design -->
-                    <div class="card-bg-gradient p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
-                        <h3 class="text-2xl font-semibold text-purple-300 mb-4 flex items-center gap-3">
-                            <i class="fas fa-paint-brush text-3xl"></i> UI/UX Design
-                        </h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="skill-item">Figma</span>
-                            <span class="skill-item">Responsive Design</span>
-                            <span class="skill-item">Wireframing</span>
-                            <span class="skill-item">Prototyping</span>
+                            <span class="skill-item">Redis</span>
                         </div>
                     </div>
 
@@ -322,10 +89,7 @@
                             <i class="fas fa-cloud text-3xl"></i> Cloud & DevOps
                         </h3>
                         <div class="flex flex-wrap gap-3">
-                            <span class="skill-item">AWS</span>
                             <span class="skill-item">Docker</span>
-                            <span class="skill-item">CI/CD</span>
-                            <span class="skill-item">Kubernetes</span>
                             <span class="skill-item">Git</span>
                             <span class="skill-item">Linux</span>
                         </div>
@@ -335,160 +99,237 @@
                     <div class="card-bg-gradient p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
                         <h3 class="text-2xl font-semibold text-cyan-300 mb-4 flex items-center gap-3">
                             <i class="fas fa-tools text-3xl"></i> Tools & Technologies
-                        </h3>
+                         </h3>
                         <div class="flex flex-wrap gap-3">
-                            <span class="skill-item">VS Code</span>
-                            <span class="skill-item">Webpack</span>
-                            <span class="skill-item">Redux</span>
-                            <span class="skill-item">Firebase</span>
-                            <span class="skill-item">Vercel</span>
-                            <span class="skill-item">Vite</span>
-                        </div>
-                    </div>
-
-                    <!-- Creative Skills -->
-                    <div class="card-bg-gradient p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
-                        <h3 class="text-2xl font-semibold text-yellow-300 mb-4 flex items-center gap-3">
-                            <i class="fas fa-lightbulb text-3xl"></i> Creative Skills
-                        </h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="skill-item">UI Animation</span>
-                            <span class="skill-item">SVG Animation</span>
-                            <span class="skill-item">3D Modeling</span>
-                            <span class="skill-item">Motion Graphics</span>
+                            <span class="skill-item">Java</span>
+                            <span class="skill-item">C#</span>
+                            <span class="skill-item">Lua</span>
+                            <span class="skill-item">JavaScript</span>
+                            <span class="skill-item">HTML5</span>
+                            <span class="skill-item">CSS</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Education Section (Placeholder - as not in screenshot, but essential for portfolio) -->
-        <section id="education" class="py-16 md:py-24 bg-gray-800 rounded-t-3xl shadow-xl">
+        <!-- Experience Section -->
+        <section id="experience" class="py-16 md:py-24 w-full">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-blue-400">Education</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                    <div class="card-bg-gradient p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
-                        <h3 class="text-2xl font-semibold text-blue-300 mb-2">Bachelor of Science in Computer Science</h3>
-                        <p class="text-gray-300 text-lg">University Name</p>
-                        <p class="text-gray-400 text-sm">2016 - 2020</p>
-                        <p class="text-gray-300 mt-4 leading-relaxed">
-                            Focused on software engineering, data structures, algorithms, and web development. Graduated with honors.
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-blue-400">Experience</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Experience Card 1 -->
+                    <div class="card-bg-gradient p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-700">
+                        <div class="text-5xl text-blue-400 mb-4 text-center">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        
+                        <h3 class="text-2xl font-semibold mb-2 text-center">Discord Bot Developer</h3>
+                        <p class="text-blue-300 text-lg text-center">Discord Servers</p>
+                        <p class="text-gray-400 text-sm text-center mb-4">2019 - 2024</p>
+                        <p class="text-gray-300 leading-relaxed text-center">
+                            Developed and managed a suite of server systems to 
+                            enhance operational efficiency. This included implementing core 
+                            systems for account syncing, currency systems, robust
+                            management panel, and an automated ticket bot system to streamline
+                            user support. 
+                    </div>
+                    <!-- Experience Card 2 -->
+                     <div class="card-bg-gradient p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-700">
+                        <div class="text-5xl text-purple-400 mb-4 text-center">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-2 text-center">Minecraft Developer</h3>
+                        <p class="text-purple-300 text-lg text-center">Nucleus Network</p>
+                        <p class="text-gray-400 text-sm text-center mb-4">2021 - Present</p>
+                        <p class="text-gray-300 leading-relaxed text-center">
+                            Engineered comprehensive server systems for many Minecraft Networks,
+                            building a foundation for smooth player experiences. This involved 
+                            end-to-end development, from creating engaging minigames to designing 
+                            and implementing core server management features including a robust 
+                            ranking system and custom commands.
                         </p>
                     </div>
-                    <div class="card-bg-gradient p-6 rounded-xl shadow-lg border border-gray-700 hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
-                        <h3 class="text-2xl font-semibold text-green-300 mb-2">Web Development Bootcamp</h3>
-                        <p class="text-gray-300 text-lg">Coding Academy</p>
-                        <p class="text-gray-400 text-sm">2021</p>
-                        <p class="text-gray-300 mt-4 leading-relaxed">
-                            Intensive full-stack web development program covering modern JavaScript frameworks and backend technologies.
+                    
+                    <!-- Experience Card 3 -->
+                    <div class="card-bg-gradient p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 border border-gray-700">
+                        <div class="text-5xl text-green-400 mb-4 text-center">
+                            <i class="fas fa-gear"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold mb-2 text-center">Roblox Scripter</h3>
+                        <p class="text-green-300 text-lg text-center">Freelance</p>
+                        <p class="text-gray-400 text-sm text-center mb-4">2023 - Present</p>
+                        <p class="text-gray-300 leading-relaxed text-center">
+                            Developed and scripted a range of Roblox games, showcasing
+                            a wide range of genres from engaging simulators to suspenseful horror
+                            experiences. Focused on creating enjoyable and immersive environments
+                            for all players, from concept to execution.
                         </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-16 md:py-24 rounded-t-3xl shadow-xl w-full">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-blue-400">Projects</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <!-- Project Card 1: Olova -->
+                    <div class="card-bg-gradient p-2 rounded-xl shadow-lg border border-gray-700 hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-[1.02] project-card-container">
+                        <div class="project-card-visible-content">
+                            <div class="flex-shrink-0 w-48 h-48 flex items-center justify-center rounded-xl bg-gray-700 overflow-hidden shadow-xl border border-gray-600">
+                                <img src="https://tr.rbxcdn.com/180DAY-6be6a0e0bb34096540f69bc72bdf90b1/768/432/Image/Webp/noFilter" alt="Grow a Coral Logo" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-3xl font-bold text-blue-300 leading-tight text-center">Grow a Coral</h3>
+                        </div>
+                        <div class="project-details text-center">
+                            <p class="text-lg text-gray-400 leading-relaxed mb-4">
+                                Developed and scripted an engaging Roblox simulator, "Grow A Coral," that transports players to their own personal coral reef. Players cultivate rare and vibrant coral species, manage resources, and strategically expand their underwater empire. The game features a dynamic ecosystem, rare items to collect, and an idle progression system that allows players to earn currency and grow their reef even while offline. This project demonstrates a strong understanding of economic systems, user progression, and creating captivating, long-term gameplay loops.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                <a href="#" class="inline-block btn-primary-gradient text-white font-semibold py-2 px-6 rounded-full shadow-md transform transition duration-300 ease-in-out hover:scale-105 text-center text-sm">
+                                    Learn More
+                                </a>
+                                <a href="#" class="inline-block btn-secondary-border font-semibold py-2 px-6 rounded-full shadow-md transform transition duration-300 ease-in-out hover:scale-105 text-center text-sm">
+                                    View on Github <i class="fab fa-github ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2: TaskFlow -->
+                    <div class="card-bg-gradient p-2 rounded-xl shadow-lg border border-gray-700 hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-[1.02] project-card-container">
+                        <div class="project-card-visible-content">
+                            <div class="flex-shrink-0 w-48 h-48 flex items-center justify-center rounded-xl bg-gray-700 overflow-hidden shadow-xl border border-gray-600">
+                                <img src="https://placehold.co/256x256/2D3748/6EE7B7?text=TaskFlow+App" alt="TaskFlow App Screenshot" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-3xl font-bold text-green-300 leading-tight text-center">TaskFlow</h3>
+                        </div>
+                        <div class="project-details text-center">
+                            <p class="text-lg text-gray-400 leading-relaxed mb-4">
+                                TaskFlow is a collaborative task management application designed to help teams organize, track, and complete projects efficiently. Features real-time updates and customizable workflows.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                <a href="#" class="inline-block btn-primary-gradient text-white font-semibold py-2 px-6 rounded-full shadow-md transform transition duration-300 ease-in-out hover:scale-105 text-center text-sm">
+                                    Demo App
+                                </a>
+                                <a href="#" class="inline-block btn-secondary-border font-semibold py-2 px-6 rounded-full shadow-md transform transition duration-300 ease-in-out hover:scale-105 text-center text-sm">
+                                    View on Github <i class="fab fa-github ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3: Quantum Cipher (New Example) -->
+                    <div class="card-bg-gradient p-2 rounded-xl shadow-lg border border-gray-700 hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-[1.02] project-card-container">
+                        <div class="project-card-visible-content">
+                            <div class="flex-shrink-0 w-48 h-48 flex items-center justify-center rounded-xl bg-gray-700 overflow-hidden shadow-xl border border-gray-600">
+                                <img src="https://placehold.co/256x256/2D3748/6EE7B7?text=Quantum+Cipher" alt="Quantum Cipher Logo" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-3xl font-bold text-purple-300 leading-tight text-center">Quantum Cipher</h3>
+                        </div>
+                        <div class="project-details text-center">
+                            <p class="text-lg text-gray-400 leading-relaxed mb-4">
+                                A proof-of-concept application demonstrating quantum-safe encryption algorithms. Built with Python and a custom cryptographic library.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                <a href="#" class="inline-block btn-primary-gradient text-white font-semibold py-2 px-6 rounded-full shadow-md transform transition duration-300 ease-in-out hover:scale-105 text-center text-sm">
+                                    View Demo
+                                </a>
+                                <a href="#" class="inline-block btn-secondary-border font-semibold py-2 px-6 rounded-full shadow-md transform transition duration-300 ease-in-out hover:scale-105 text-center text-sm">
+                                    View on Github <i class="fab fa-github ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 4: AI Creative Suite (New Example) -->
+                    <div class="card-bg-gradient p-2 rounded-xl shadow-lg border border-gray-700 hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:scale-[1.02] project-card-container">
+                        <div class="project-card-visible-content">
+                            <div class="flex-shrink-0 w-48 h-48 flex items-center justify-center rounded-xl bg-gray-700 overflow-hidden shadow-xl border border-gray-600">
+                                <img src="https://placehold.co/256x256/2D3748/6EE7B7?text=AI+Suite" alt="AI Creative Suite Logo" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-3xl font-bold text-orange-300 leading-tight text-center">AI Creative Suite</h3>
+                        </div>
+                        <div class="project-details text-center">
+                            <p class="text-lg text-gray-400 leading-relaxed mb-4">
+                                An integrated suite of AI-powered tools for content generation and design. Leverages generative models for text and image creation.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                <a href="#" class="inline-block btn-primary-gradient text-white font-semibold py-2 px-6 rounded-full shadow-md transform transition duration-300 ease-in-out hover:scale-105 text-center text-sm">
+                                    Try Now
+                                </a>
+                                <a href="#" class="inline-block btn-secondary-border font-semibold py-2 px-6 rounded-full shadow-md transform transition duration-300 ease-in-out hover:scale-105 text-center text-sm">
+                                    View on Github <i class="fab fa-github ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-16 md:py-24 bg-gray-900">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-4xl md:text-5xl font-bold text-blue-400 mb-6">Get in Touch</h2>
-                <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-                    Have a project in mind or just want to chat? Feel free to reach out!
-                </p>
-                <div class="flex justify-center gap-8 mb-12">
-                    <a href="mailto:your.email@example.com" class="text-gray-300 hover:text-blue-400 transition duration-300 transform hover:scale-110">
-                        <i class="fas fa-envelope text-5xl"></i>
-                        <p class="text-lg mt-2">Email Me</p>
-                    </a>
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-blue-400 transition duration-300 transform hover:scale-110">
-                        <i class="fab fa-linkedin text-5xl"></i>
-                        <p class="text-lg mt-2">LinkedIn</p>
-                    </a>
-                    <a href="https://github.com/yourprofile" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-blue-400 transition duration-300 transform hover:scale-110">
-                        <i class="fab fa-github text-5xl"></i>
-                        <p class="text-lg mt-2">GitHub</p>
-                    </a>
-                </div>
-
-                <!-- Simple Contact Form (Optional) -->
-                <form action="#" method="POST" class="max-w-xl mx-auto bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700">
-                    <div class="mb-6 text-left">
-                        <label for="name" class="block text-gray-300 text-sm font-bold mb-2">Name</label>
-                        <input type="text" id="name" name="name" class="shadow appearance-none border border-gray-600 rounded-lg w-full py-3 px-4 text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700" placeholder="Your Name">
-                    </div>
-                    <div class="mb-6 text-left">
-                        <label for="email" class="block text-gray-300 text-sm font-bold mb-2">Email</label>
-                        <input type="email" id="email" name="email" class="shadow appearance-none border border-gray-600 rounded-lg w-full py-3 px-4 text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700" placeholder="your.email@example.com">
-                    </div>
-                    <div class="mb-6 text-left">
-                        <label for="message" class="block text-gray-300 text-sm font-bold mb-2">Message</label>
-                        <textarea id="message" name="message" rows="5" class="shadow appearance-none border border-gray-600 rounded-lg w-full py-3 px-4 text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700" placeholder="Your message..."></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary-gradient text-white font-bold py-3 px-10 rounded-full focus:outline-none focus:shadow-outline transform transition duration-300 ease-in-out hover:scale-105 shadow-lg">
-                        Send Message
+        <section id="contact" class="py-16 md:py-24 w-full flex flex-col items-center justify-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-6 text-blue-400">Contact</h2>
+            <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto text-center">
+                Click the Discord icon to see a cool train reveal my Discord tag!
+            </p>
+            
+            <div class="card">
+                <div class="controls">
+                    <button id="launchButton" class="discord-button">
+                        <i class="fab fa-discord text-2xl"></i> 
+                        <span>Launch Train</span>
                     </button>
-                </form>
+                </div>
+                
+                <div class="scene" id="scene">
+                    <div class="track"></div>
+
+                    <div class="train" id="train" aria-label="train">
+                        <!-- First part: The Car -->
+                        <div class="car"> 
+                            <div class="bounce-text" id="bounceText">KARAM#0001</div> <!-- MOVED HERE -->
+                        </div> 
+
+                        <div class="wheel w1"></div>
+                        <div class="wheel w2"></div>
+
+                        <!-- Coupler between car and engine -->
+                        <div class="coupler"></div>
+
+                        <!-- Second part: The Engine (now on the right) -->
+                        <div class="engine"></div> 
+                        <div class="chimney"></div>
+                        <div class="cab"><div class="window"></div></div>
+                        <div class="smoke">
+                            <div class="puff"></div>
+                            <div class="puff"></div>
+                            <div class="puff"></div>
+                        </div>
+                        <div class="wheel w3"></div>
+                        <div class="wheel w4"></div>
+                    </div>
+
+                    <div class="ground"></div>
+                </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 py-6 text-center text-gray-400 text-sm rounded-t-lg shadow-inner">
+    <footer class="bg-gray-800 py-6 text-center text-gray-400 text-sm rounded-t-lg shadow-inner w-full">
         <div class="container mx-auto px-4">
-            <p>&copy; 2024 Your Name. All rights reserved. Designed with <span class="text-red-500">&hearts;</span> and code.</p>
+            <p>oMaybe &copy; 2025. All rights reserved. Designed with <span class="text-red-500">&hearts;</span> and code.</p>
         </div>
     </footer>
 
-    <!-- JavaScript for smooth scrolling (optional but nice for navigation) -->
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+    <script src="main.js"></script>
 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+    <div class="snowflakes" aria-hidden="true">
 
-        // Typing animation for the dynamic role
-        const dynamicRoleElement = document.getElementById('dynamic-role');
-        const roles = ["Programmer", "Leader", "Innovator", "Creator"]; // Added "Innovator" and "Creator" for more variety
-        let roleIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingSpeed = 150; // Milliseconds per character
-        const deletingSpeed = 100; // Milliseconds per character
-        const delayBetweenWords = 1250; // Milliseconds before deleting or typing next word
-
-        function typeWriter() {
-            const currentRole = roles[roleIndex];
-            if (isDeleting) {
-                dynamicRoleElement.textContent = currentRole.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                dynamicRoleElement.textContent = currentRole.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let currentSpeed = isDeleting ? deletingSpeed : typingSpeed;
-            if (!isDeleting && charIndex === currentRole.length) {
-                // Done typing, set delay before deleting
-                currentSpeed = delayBetweenWords;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                // Done deleting, move to next word
-                isDeleting = false;
-                roleIndex = (roleIndex + 1) % roles.length;
-                currentSpeed = 500; // Short delay before typing next word
-            }
-
-            setTimeout(typeWriter, currentSpeed);
-        }
-
-        // Start the typing animation when the window loads
-        window.onload = function() {
-            typeWriter();
-        };
-    </script>
+    </div>
 </body>
 </html>
