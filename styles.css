@@ -32,6 +32,15 @@ body {
     position: relative; /* Ensure sections can be positioned relative to body */
 }
 
+.roblox-icon{
+  display:inline-block;
+  width:1em;              /* scales with font-size like FA */
+  height:1em;
+  background:url("https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/4X/6/6/8/668ed10627b11c191c5aaf49b1a13408c0dc2c29.png")
+             no-repeat center / contain;
+  vertical-align:-0.125em; /* aligns baseline like FA */
+}
+
 /* Custom styles for subtle gradient on buttons/cards, mimicking the design */
 .btn-primary-gradient {
     background-image: linear-gradient(to right, #6EE7B7, #3B82F6);
@@ -40,6 +49,11 @@ body {
     border: 1px solid #60A5FA;
     color: #60A5FA;
 }
+.btn-third-border {
+    border: 1px solid #34D399;
+    color: #34D399;
+}
+
 .card-bg-gradient {
     background-image: linear-gradient(to bottom right, #2D3748, #1A202C); /* Darker shades for card background */
 }
@@ -452,11 +466,11 @@ body {
     border-color: rgba(64, 224, 255, 0.5);
     box-shadow: 0 15px 30px rgba(168, 85, 247, 0.4); /* Enhanced shadow with glow */
     border-color: #a855f7;
-    border-width: 3px;
+    border-width: 2px;
 }
 
 .project-card-container:hover .project-details {
-    max-height: 300px; /* Adjust as needed based on content */
+    max-height: 500px; /* Adjust as needed based on content */
     opacity: 1;
     padding-top: 0.25rem; /* Add padding when expanded */
 }
